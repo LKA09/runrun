@@ -1,0 +1,15 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE user (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, email_verified INTEGER NOT NULL DEFAULT 0, image TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
+CREATE TABLE session (id TEXT PRIMARY KEY, expires_at INTEGER NOT NULL, token TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, ip_address TEXT, user_agent TEXT, user_id TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE);
+CREATE INDEX session_user ON session(user_id);
+CREATE TABLE account (id TEXT PRIMARY KEY, account_id TEXT NOT NULL, provider_id TEXT NOT NULL, user_id TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE, access_token TEXT, refresh_token TEXT, id_token TEXT, access_token_expires_at INTEGER, refresh_token_expires_at INTEGER, scope TEXT, password TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, UNIQUE(provider_id, account_id));
+CREATE INDEX account_user ON account(user_id);
+CREATE TABLE verification (id TEXT PRIMARY KEY, identifier TEXT NOT NULL, value TEXT NOT NULL, expires_at INTEGER NOT NULL, created_at INTEGER, updated_at INTEGER);
+CREATE INDEX verification_identifier ON verification(identifier);
+CREATE TABLE posts (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE, caption TEXT NOT NULL CHECK(length(caption) <= 300), distance REAL NOT NULL CHECK(distance > 0 AND distance <= 300), duration INTEGER NOT NULL CHECK(duration > 0 AND duration <= 4320), run_date TEXT NOT NULL, photo_key TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL);
+CREATE INDEX posts_recent ON posts(created_at DESC, id DESC);
+CREATE INDEX posts_user ON posts(user_id, created_at DESC);
+CREATE INDEX posts_date ON posts(run_date);
+CREATE TABLE likes (post_id TEXT NOT NULL REFERENCES posts(id) ON DELETE CASCADE, user_id TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE, PRIMARY KEY(post_id, user_id));
+CREATE TABLE rate_limits (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+CREATE TABLE photo_cleanup (photo_key TEXT PRIMARY KEY, created_at INTEGER NOT NULL);

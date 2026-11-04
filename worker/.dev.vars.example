@@ -1,0 +1,6 @@
+ENVIRONMENT=development
+FRONTEND_URL=http://127.0.0.1:5173
+API_URL=http://127.0.0.1:8787
+BETTER_AUTH_SECRET=replace-with-at-least-32-random-characters
+GOOGLE_CLIENT_ID=your-google-web-client-id
+GOOGLE_CLIENT_SECRET=your-google-web-client-secret

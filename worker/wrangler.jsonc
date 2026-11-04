@@ -1,0 +1,32 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "runrun-api",
+  "main": "build/index.js",
+  "compatibility_date": "2026-11-04",
+  "workers_dev": true,
+  "observability": { "enabled": true, "logs": { "invocation_logs": false } },
+  "build": { "command": "npm run api:build" },
+  "compatibility_flags": ["nodejs_compat"],
+  "alias": {
+    "@nestjs/microservices": "./stubs/optional.cjs",
+    "@nestjs/websockets/socket-module.js": "./stubs/optional.cjs",
+    "@nestjs/microservices/microservices-module.js": "./stubs/optional.cjs",
+    "class-transformer": "./stubs/optional.cjs",
+    "class-validator": "./stubs/optional.cjs",
+  },
+  "vars": {
+    "FRONTEND_URL": "https://running.rootnode.kr",
+    "API_URL": "https://running.rootnode.kr",
+    "ENVIRONMENT": "production",
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "runrun-db",
+      "database_id": "d8836c57-f658-4d5a-ae70-60eef1aa63c8",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "r2_buckets": [{ "binding": "PHOTOS", "bucket_name": "runrun-photos" }],
+  "triggers": { "crons": ["17 3 * * *"] },
+}
