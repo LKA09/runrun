@@ -39,7 +39,7 @@ function Mark() {
   );
 }
 function fmt(n: number) {
-  return new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 1 }).format(n);
+  return new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 2 }).format(n);
 }
 function RunCard({
   run,

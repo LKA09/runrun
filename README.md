@@ -72,8 +72,10 @@ npx wrangler secret put GOOGLE_CLIENT_SECRET --config worker/wrangler.jsonc
 npm run api:deploy
 ```
 
-Google OAuth 동의/클라이언트 발급 및 네임서버 이전이 승인되어 완료되기 전에는 운영 로그인이 작동하지 않습니다. Cloudflare DNS에 GitHub Pages를 가리키는 `running` 레코드를 만들고 인증서 발급을 확인한 후 이 호스트만 프록시합니다. 기존 서비스 DNS 레코드는 DNS-only로 유지합니다. Worker의 `running.rootnode.kr/*` route를 연결해야 `/api/*` 요청이 GitHub Pages의 404로 빠지지 않습니다.
+운영 Google OAuth 클라이언트 `RUNRUN Web`을 생성하고 프로덕션으로 게시했습니다. 기본 프로필·이메일·OpenID만 요청하며 인증정보는 Worker Secrets에 등록했습니다. 실제 브라우저에서 Google 로그인, 세션 유지, 사진 업로드, 피드와 개인 통계, 응원을 확인했습니다. 점검용 게시물과 사진은 검증 후 정리했습니다.
 
-기존 가비아 DNS 25개 레코드는 `.local/rootnode.kr.zone`에 백업하고 Cloudflare의 미활성 zone으로 복사했습니다. 이 파일, `.dev.vars`, 빌드 결과와 로컬 DB는 Git에 포함하지 않습니다.
+가비아의 DNS 25개와 새 `running` 레코드를 합친 26개를 `.local/rootnode.kr.zone`에 백업하고 Cloudflare로 이전했습니다. 내보낸 zone과 대조해 누락·의도하지 않은 추가·값 변경이 없는 것을 확인했습니다. 등록기관은 가비아에 유지하고 네임서버는 `damian.ns.cloudflare.com`, `liz.ns.cloudflare.com`으로 변경했습니다. `running`만 프록시하며 기존 서비스 레코드는 DNS-only로 유지합니다. TLS Full (Strict), 최소 TLS 1.2, HTTPS 강제 적용, Universal SSL 활성화를 확인했습니다. Worker route는 `running.rootnode.kr/*`입니다. 이전 DNS를 캐시한 리졸버에서는 전파되는 동안 이전 정적 사이트가 보일 수 있습니다.
+
+백업 파일, `.dev.vars`, 빌드 결과와 로컬 DB는 Git에 포함하지 않습니다. OAuth 인증정보를 옮기는 데 사용한 임시 파일은 서버 등록 후 삭제했습니다.
 
 사진 출처: [Unsplash](https://unsplash.com), 러닝 이미지 `photo-1552674605-db6ffd4facb5`. RUNRUN은 Nike와 제휴하지 않은 독립 커뮤니티입니다.
