@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests" />
+  <title>개인정보 안내 — RUNRUN</title>
+  <link rel="stylesheet" href="/legal.css" />
+  <link rel="icon" href="/favicon.svg" />
+</head>
+<body>
+  <header><a href="/">// RUNRUN</a><span>EVERY RUN COUNTS.</span></header>
+  <main>
+    <p class="eyebrow">PRIVACY / 2026.11.04</p>
+    <h1>개인정보 안내</h1>
+    <p>RUNRUN은 사진과 짧은 글로 러닝 기록을 나누는 독립 커뮤니티입니다. 이 안내는 현재 서비스에서 정보를 어떻게 사용하는지 설명합니다.</p>
+    <h2>로그인에 사용하는 정보</h2>
+    <p>Google 계정으로 로그인하면 이름, 이메일, Google 계정 식별자와 이메일 확인 여부를 받아 계정 및 러닝 기록 관리에 사용합니다. Google 비밀번호는 받지 않습니다. Google의 기본 프로필과 이메일 범위만 요청하며 Gmail, Drive 등 다른 Google 서비스 데이터에는 접근하지 않습니다.</p>
+    <h2>공개되는 정보</h2>
+    <p>러너 이름, 업로드한 사진과 글, 러닝 날짜·거리·시간, 응원 수는 다른 방문자에게 공개됩니다. 이메일, Google 식별자, 로그인 세션과 OAuth 토큰은 공개 피드에서 제외합니다. 다른 사람의 얼굴, 집 주소, 연락처 등 개인정보가 담긴 사진과 글을 올리지 마세요.</p>
+    <h2>사진과 로그인 보호</h2>
+    <p>사진은 브라우저에서 JPEG로 변환하고 서버에서 EXIF·XMP·코멘트 등 메타데이터를 제거합니다. 로그인 세션은 Secure·HttpOnly·SameSite 쿠키로 관리하며 브라우저 localStorage에 저장하지 않습니다. OAuth 비밀값은 서버에서만 사용합니다.</p>
+    <h2>저장과 보관</h2>
+    <p>계정·세션·인증 기록은 Cloudflare D1, 사진은 비공개 R2 버킷에 저장합니다. 공개 사진은 게시물 식별자를 확인하는 API를 통해 제공됩니다. 세션 유효기간은 7일이며 만료된 세션과 일회성 인증 데이터는 정리합니다. 세션의 IP 주소와 브라우저 정보는 로그인 보안에 사용합니다. 과도한 요청을 막는 카운터에는 IP를 해시한 값을 사용합니다.</p>
+    <h2>삭제와 문의</h2>
+    <p>로그인한 작성자는 자신의 게시물과 사진을 함께 삭제할 수 있습니다. 계정 정보 삭제나 운영 관련 문의는 <a href="https://github.com/LKA09/runrun/issues" rel="noreferrer">RUNRUN 운영 저장소</a>로 남겨주세요. 공개 문의에는 이메일, 인증번호, 비밀번호 등 개인정보를 적지 마세요.</p>
+    <h2>사용하는 서비스</h2>
+    <p>Google은 로그인을, Cloudflare는 API·데이터 저장·전송 보안을, GitHub Pages는 공개 정적 화면을 제공합니다. 화면은 Google Fonts를 사용합니다. 운영 로그에 로그인 쿠키, OAuth 응답, 글 본문을 출력하지 않도록 구성했습니다.</p>
+    <a class="back" href="/">러닝 피드로 돌아가기 ↗</a>
+  </main>
+  <footer>RUNRUN — 모든 러닝은 의미가 있으니까.</footer>
+</body>
+</html>

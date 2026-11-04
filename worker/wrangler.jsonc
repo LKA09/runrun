@@ -4,6 +4,7 @@
   "main": "build/index.js",
   "compatibility_date": "2026-11-04",
   "workers_dev": true,
+  "routes": [{ "pattern": "running.rootnode.kr/*", "zone_name": "rootnode.kr" }],
   "observability": { "enabled": true, "logs": { "invocation_logs": false } },
   "build": { "command": "npm run api:build" },
   "compatibility_flags": ["nodejs_compat"],
